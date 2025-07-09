@@ -18,4 +18,5 @@ git flow init
 ## Trabajar con features usando pull request
 ```
 git flow feature start habilitando-servicios
+git flow feature finish habilitando-servicios
 ```
