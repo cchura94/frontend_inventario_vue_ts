@@ -16,11 +16,13 @@ const routes = [
         children: [
             {
                 path: '',
-                component: Inicio
+                component: Inicio,
+                name: "Inicio"
             },
             {
                 path: 'servicios',
-                component: Servicios
+                component: Servicios,
+                name: "Servicios"
             },
             {
                 path: 'nosotros',
@@ -49,7 +51,8 @@ const routes = [
         children: [
             {
                 path: 'profile',
-                component: Perfil
+                component: Perfil,
+                name: "Perfil"
             },
             {
                 path: 'usuario',
