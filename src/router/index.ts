@@ -3,11 +3,12 @@ import Login from "../views/auth/Login.vue";
 import Registro from "../views/auth/Register.vue";
 import WebLayout from "../views/template/WebLayout.vue";
 import Inicio from "../views/web/Inicio.vue";
-import AppLayout from "../views/template/AppLayout.vue";
+// import AppLayout from "../views/template/AppLayout.vue";
 import Perfil from "../views/admin/perfil/Perfil.vue";
 import Usuario from "../views/admin/usuarios/Usuario.vue";
 import Servicios from "../views/web/Servicios.vue";
 import Nosotros from "../views/web/Nosotros.vue";
+import AppLayout from "../layout/AppLayout.vue";
 
 const routes = [
     {

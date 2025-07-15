@@ -42,6 +42,8 @@ async function funIngresar(){
     try {
         const res = await loginApi(email.value, password.value);
         console.log(res);
+        localStorage.setItem("access_token", res.access_token)
+
 
         router.push({name: "Perfil"});
         
