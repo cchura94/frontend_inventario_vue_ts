@@ -37,6 +37,8 @@ const routes = [
         children: [
             {
                 path: 'login',
+                name: 'Login',
+                meta: {redirectIfAuth: true},
                 component: Login
             },
             {
@@ -49,6 +51,7 @@ const routes = [
     {
         path: '/admin',
         component: AppLayout,
+        meta: { requireAuth: true },
         children: [
             {
                 path: 'profile',
@@ -68,5 +71,25 @@ const router = createRouter({
     history:createWebHistory(),
     routes: routes
 })
+
+// Guards
+router.beforeEach((to, from, next) => {
+    console.log("from: ", from)
+    console.log("to: ", to)
+    const token = localStorage.getItem("access_token");
+    if(to.meta.requireAuth){
+        if(!token){
+            return next({name: 'Login'}); 
+        }else{
+            return next()
+        }
+    }
+    if(to.meta.redirectIfAuth && token){
+        return next({name: 'Perfil'});
+    }
+
+    return next();
+})
+
 
 export default router;
