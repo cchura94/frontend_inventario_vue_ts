@@ -15,8 +15,8 @@
                 <InputText id="nom" class="flex-auto" autocomplete="off" v-model="categoria.nombre" />
             </div>
             <div class="flex items-center gap-4 mb-8">
-                <label for="det" class="font-semibold w-24">Detalle</label>
-                <InputText id="det" class="flex-auto" autocomplete="off" v-model="categoria.detalle" />
+                <label for="det" class="font-semibold w-24">Descripción</label>
+                <InputText id="det" class="flex-auto" autocomplete="off" v-model="categoria.descripcion" />
             </div>
             <div class="flex justify-end gap-2">
                 <Button type="button" label="Cancelar" severity="secondary" @click="visibleCategoria = false"></Button>
@@ -27,7 +27,7 @@
         <DataTable :value="categorias" size="small">
             <Column field="id" header="ID"></Column>
             <Column field="nombre" header="NOMBRE"></Column>
-            <Column field="detalle" header="DETALLE"></Column>
+            <Column field="descripcion" header="DETALLE"></Column>
             <Column :exportable="false" style="min-width: 12rem">
                 <template #body="slotProps">
                     <Button icon="pi pi-pencil" rounded class="mr-2" @click="editProduct(slotProps.data)" />
@@ -49,7 +49,7 @@
                 <tr v-for="cat in categorias" class="border-b">
                     <td class="py-2 px-4 text-sm text-gray-800">{{ cat.id }}</td>
                     <td class="py-2 px-4 text-sm text-gray-800">{{ cat.nombre }}</td>
-                    <td class="py-2 px-4 text-sm text-gray-800">{{ cat.detalle }}</td>
+                    <td class="py-2 px-4 text-sm text-gray-800">{{ cat.descripcion }}</td>
                     <td class="py-2 px-4 text-sm text-gray-800">
                         <Button icon="pi pi-pencil" rounded class="mr-2" @click="editProduct(cat)" />
                     <Button icon="pi pi-trash" rounded severity="danger" @click="confirmDeleteProduct(cat)" />
@@ -69,7 +69,7 @@ import type { Categoria } from './../../../../Types/Categoria';
 const categorias = ref<Categoria[]>([]);
 const cargando = ref<boolean>(false);
 const visibleCategoria = ref<boolean>(false);
-const categoria = ref<Categoria>({ nombre: "", detalle: ""});
+const categoria = ref<Categoria>({ nombre: "", descripcion: ""});
 
 onMounted(() => {
     obtenerCategorias();

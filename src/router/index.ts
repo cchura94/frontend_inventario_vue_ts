@@ -10,6 +10,7 @@ import Servicios from "../views/web/Servicios.vue";
 import Nosotros from "../views/web/Nosotros.vue";
 import AppLayout from "../layout/AppLayout.vue";
 import Categoria from "../views/admin/inventario/categoria/Categoria.vue";
+import NuevoUsuario from "../views/admin/usuarios/NuevoUsuario.vue";
 
 const routes = [
     {
@@ -62,6 +63,10 @@ const routes = [
             {
                 path: 'usuario',
                 component: Usuario
+            },
+            {
+                path: 'usuario/nuevo',
+                component: NuevoUsuario
             },
             {
                 path: 'categoria',
