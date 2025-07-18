@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: "https://laravue2.blumbit.net/back/public/api"// import.meta.env.VITE_API_URL || "http://miempresa2.com/api" 
+    // baseURL: "https://laravue2.blumbit.net/back/public/api"// import.meta.env.VITE_API_URL || "http://miempresa2.com/api" 
+    baseURL: "http://127.0.0.1:8000/api"
 });
 
 // interceptores del cliente
