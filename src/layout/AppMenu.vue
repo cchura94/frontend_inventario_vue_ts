@@ -21,9 +21,10 @@ const model = ref([
     {
         label: 'Gestión Inventarios',
         items: [
-            { label: 'Productos', icon: 'pi pi-fw pi-box', to: '/admin/producto' },
-            { label: 'Categoria', icon: 'pi pi-fw pi-share-alt', to: '/admin/categoria' },
-            { label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/uikit/panel' }
+            { label: 'Productos', icon: 'pi pi-fw pi-box', to: '/admin/inventario/producto' },
+            { label: 'Categoria', icon: 'pi pi-fw pi-share-alt', to: '/admin/inventario/categoria' },
+            { label: 'Almacen', icon: 'pi pi-fw pi-tablet', to: '/admin/inventario/almacen' },
+            { label: 'Sucursal', icon: 'pi pi-fw pi-tablet', to: '/admin/inventario/sucursal' }
         ]
     },
     {
