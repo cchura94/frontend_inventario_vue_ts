@@ -21,7 +21,7 @@
                 :totalRecords="totalRecords"
                 dataKey="id"
                 :paginator="true"
-                :rows="10"
+                :rows="5"
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                 :rowsPerPageOptions="[5, 10, 25]"
                 currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} productos"
@@ -46,7 +46,7 @@
                 <Column field="nombre" header="Nombre Producto" sortable style="min-width: 16rem"></Column>
                 <Column header="Imagen">
                     <template #body="slotProps">
-                        <img :src="`https://www.electronicospormayorbolivia.com/wp-content/uploads/2022/01/1-3.jpg?${slotProps.data.imagen}`" :alt="slotProps.data.imagen" class="rounded" style="width: 64px" />
+                        <Image :src="`${BASE_URL}/${slotProps.data.imagen_url}`" v-if="slotProps.data.imagen_url" alt="Image" width="250" preview class="rounded" style="width: 64px" />
                     </template>
                 </Column>
                 <Column field="precio_venta_actual" header="Precio" sortable style="min-width: 4rem">
@@ -58,6 +58,7 @@
                 
                 <Column :exportable="false" style="min-width: 12rem">
                     <template #body="slotProps">
+                        <Button icon="pi pi-image" rounded class="mr-2" @click="editProductImagen(slotProps.data)" />
                         <Button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editProduct(slotProps.data)" />
                         <Button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteProduct(slotProps.data)" />
                     </template>
@@ -126,6 +127,21 @@
             </template>
         </Dialog>
 
+        <Dialog v-model:visible="productDialogImagen" :style="{ width: '450px' }" header="Imagen de Producto" :modal="true">
+            <div class="flex flex-col gap-6">
+                <FileUpload name="demo[]" customUpload @select="onFileSelect" :multiple="false" accept="image/*" :maxFileSize="1000000">
+                    <template #empty>
+                        <span>Arrastrar y soltar imagenes aquí.</span>
+                    </template>
+                </FileUpload>
+            </div>
+
+            <template #footer>
+                <Button label="Cancelar" icon="pi pi-times" text @click="productDialogImagen = false" />
+            </template>
+        </Dialog>
+
+
                 
             <pre>{{ products }}</pre>
         </div>
@@ -137,8 +153,9 @@
     import productoService from '../../../../services/producto.service';
     import sucursalService from '../../../../services/sucursal.service';
     import almacenService from '../../../../services/almacen.service';
-    import { getCategorias } from '../../../../services/categoria.service'
-
+    import { getCategorias } from '../../../../services/categoria.service';
+    import { BASE_URL } from '../../../../lib/axios';
+    
     const products = ref([]);
     const product = ref({});
     const sucursales = ref([]);
@@ -152,6 +169,8 @@
     const lazyParams = ref({})
     const buscar = ref("")
     const productDialog = ref(false);
+    const productDialogImagen = ref(false);
+    const imagenSeleccionada = ref(null)
 
     onMounted(() => {
         obtenerListaProducto();
@@ -170,13 +189,15 @@
     }
 
     async function obtenerListaProducto(){
-        cargando.value = false
+        cargando.value = true
         // const page = lazyParams.value.page?lazyParams.value.page:1;
 
         const {data} = await productoService.getProductos(almacen_id.value, lazyParams.value.page + 1, lazyParams.value.rows, buscar.value );
         products.value = data.data;
         console.log(products.value)
         totalRecords.value = data.total;
+
+        cargando.value = false
     }
 
     async function obtenerSucursales(){
@@ -202,6 +223,19 @@
         obtenerListaProducto()
     }
 
+    const onFileSelect = async (event) => {
+        imagenSeleccionada.value = event.files[0];  
+        
+        const formdata = new FormData();
+        formdata.append("imagen", imagenSeleccionada.value);
+
+        const {data} = await productoService.actualizarImagenProducto(product.value.id, formdata);
+        productDialogImagen.value = false;
+        obtenerListaProducto()
+    }
+
+    
+
     const openNew = () => {
         productDialog.value = true;
     }
@@ -212,5 +246,11 @@
         productDialog.value = false;
         obtenerListaProducto();
         product.value = {};
+    }
+
+    const editProductImagen = (prod) => {
+        product.value = prod;
+        productDialogImagen.value = true;
+
     }
 </script>

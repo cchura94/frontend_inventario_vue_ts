@@ -17,5 +17,8 @@ export default {
     },
     eliminarProducto(id: number){
         return axios.delete(`/producto/${id}`);
+    },
+    actualizarImagenProducto(id: number, formData: FormData){
+        return axios.post(`/producto/${id}/actualizar-imagen`, formData);
     }
 }

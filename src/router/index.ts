@@ -15,6 +15,9 @@ import Producto from "../views/admin/inventario/producto/Producto.vue";
 import Inventario from "../views/admin/inventario/Inventario.vue";
 import Almacen from "./../views/admin/inventario/almacen/Almacen.vue"
 import Sucursal from "../views/admin/inventario/sucursal/Sucursal.vue";
+import Movimientos from "../views/admin/movimientos/Movimientos.vue";
+import NotaCompra from "../views/admin/movimientos/notas/NotaCompra.vue";
+import NotaVenta from "../views/admin/movimientos/notas/NotaVenta.vue";
 const routes = [
     {
         path: '/',
@@ -92,6 +95,21 @@ const routes = [
                         component: Sucursal
                     }
                 ]
+            },
+            {
+                path: 'movimientos',
+                component: Movimientos,     
+                children: [
+                    {
+                        path: 'nota/compra',
+                        component: NotaCompra
+                    },
+                    {
+                        path: 'nota/venta',
+                        component: NotaVenta
+
+                    }
+                ]       
             }
 
         ]
