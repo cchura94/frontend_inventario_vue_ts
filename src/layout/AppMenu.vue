@@ -21,103 +21,29 @@ const model = ref([
     {
         label: 'Gestión Inventarios',
         items: [
-            { label: 'Productos', icon: 'pi pi-fw pi-box', to: '/admin/producto' },
-            { label: 'Categoria', icon: 'pi pi-fw pi-share-alt', to: '/admin/categoria' },
-            { label: 'Panel', icon: 'pi pi-fw pi-tablet', to: '/uikit/panel' }
+            { label: 'Productos', icon: 'pi pi-fw pi-box', to: '/admin/inventario/producto' },
+            { label: 'Categoria', icon: 'pi pi-fw pi-share-alt', to: '/admin/inventario/categoria' },
+            { label: 'Almacen', icon: 'pi pi-fw pi-tablet', to: '/admin/inventario/almacen' },
+            { label: 'Sucursal', icon: 'pi pi-fw pi-tablet', to: '/admin/inventario/sucursal' }
         ]
     },
     {
-        label: 'Ventas',
+        label: 'Movimientos',
         icon: 'pi pi-fw pi-briefcase',
-        to: '/pages',
         items: [
             {
-                label: 'Landing',
+                label: 'Compras',
                 icon: 'pi pi-fw pi-globe',
-                to: '/landing'
+                to: '/admin/movimientos/nota/compra'
             },
             {
-                label: 'Auth',
-                icon: 'pi pi-fw pi-user',
-                items: [
-                    {
-                        label: 'Login',
-                        icon: 'pi pi-fw pi-sign-in',
-                        to: '/auth/login'
-                    },
-                    {
-                        label: 'Error',
-                        icon: 'pi pi-fw pi-times-circle',
-                        to: '/auth/error'
-                    },
-                    {
-                        label: 'Access Denied',
-                        icon: 'pi pi-fw pi-lock',
-                        to: '/auth/access'
-                    }
-                ]
-            },
-            {
-                label: 'Crud',
-                icon: 'pi pi-fw pi-pencil',
-                to: '/pages/crud'
-            },
-            {
-                label: 'Not Found',
-                icon: 'pi pi-fw pi-exclamation-circle',
-                to: '/pages/notfound'
-            },
-            {
-                label: 'Empty',
-                icon: 'pi pi-fw pi-circle-off',
-                to: '/pages/empty'
+                label: 'Ventas',
+                icon: 'pi pi-fw pi-globe',
+                to: '/admin/movimientos/nota/venta'
             }
         ]
     },
-    {
-        label: 'Compras',
-        items: [
-            {
-                label: 'Submenu 1',
-                icon: 'pi pi-fw pi-bookmark',
-                items: [
-                    {
-                        label: 'Submenu 1.1',
-                        icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            { label: 'Submenu 1.1.1', icon: 'pi pi-fw pi-bookmark' },
-                            { label: 'Submenu 1.1.2', icon: 'pi pi-fw pi-bookmark' },
-                            { label: 'Submenu 1.1.3', icon: 'pi pi-fw pi-bookmark' }
-                        ]
-                    },
-                    {
-                        label: 'Submenu 1.2',
-                        icon: 'pi pi-fw pi-bookmark',
-                        items: [{ label: 'Submenu 1.2.1', icon: 'pi pi-fw pi-bookmark' }]
-                    }
-                ]
-            },
-            {
-                label: 'Submenu 2',
-                icon: 'pi pi-fw pi-bookmark',
-                items: [
-                    {
-                        label: 'Submenu 2.1',
-                        icon: 'pi pi-fw pi-bookmark',
-                        items: [
-                            { label: 'Submenu 2.1.1', icon: 'pi pi-fw pi-bookmark' },
-                            { label: 'Submenu 2.1.2', icon: 'pi pi-fw pi-bookmark' }
-                        ]
-                    },
-                    {
-                        label: 'Submenu 2.2',
-                        icon: 'pi pi-fw pi-bookmark',
-                        items: [{ label: 'Submenu 2.2.1', icon: 'pi pi-fw pi-bookmark' }]
-                    }
-                ]
-            }
-        ]
-    }
+    
 ]);
 </script>
 

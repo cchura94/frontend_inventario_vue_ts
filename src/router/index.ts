@@ -11,7 +11,13 @@ import Nosotros from "../views/web/Nosotros.vue";
 import AppLayout from "../layout/AppLayout.vue";
 import Categoria from "../views/admin/inventario/categoria/Categoria.vue";
 import NuevoUsuario from "../views/admin/usuarios/NuevoUsuario.vue";
-
+import Producto from "../views/admin/inventario/producto/Producto.vue";
+import Inventario from "../views/admin/inventario/Inventario.vue";
+import Almacen from "./../views/admin/inventario/almacen/Almacen.vue"
+import Sucursal from "../views/admin/inventario/sucursal/Sucursal.vue";
+import Movimientos from "../views/admin/movimientos/Movimientos.vue";
+import NotaCompra from "../views/admin/movimientos/notas/NotaCompra.vue";
+import NotaVenta from "../views/admin/movimientos/notas/NotaVenta.vue";
 const routes = [
     {
         path: '/',
@@ -69,8 +75,41 @@ const routes = [
                 component: NuevoUsuario
             },
             {
-                path: 'categoria',
-                component: Categoria
+                path: 'inventario',
+                component: Inventario,
+                children: [
+                    {
+                        path: 'categoria',
+                        component: Categoria
+                    },
+                    {
+                        path: 'producto',
+                        component: Producto
+                    },
+                    {
+                        path: 'almacen',
+                        component: Almacen
+                    },
+                    {
+                        path: 'sucursal',
+                        component: Sucursal
+                    }
+                ]
+            },
+            {
+                path: 'movimientos',
+                component: Movimientos,     
+                children: [
+                    {
+                        path: 'nota/compra',
+                        component: NotaCompra
+                    },
+                    {
+                        path: 'nota/venta',
+                        component: NotaVenta
+
+                    }
+                ]       
             }
 
         ]
